@@ -123,8 +123,8 @@ function processUpdate($update) {
         switch ($data) {
             case 'earn':
                 $time_diff = time() - $users[$chat_id]['last_earn'];
-                if ($time_diff < 60) {
-                    $remaining = 60 - $time_diff;
+                if ($time_diff < 3600) {
+                    $remaining = 3600 - $time_diff;
                     $msg = "⏳ Please wait $remaining seconds before earning again!";
                 } else {
                     $earn = 10;
@@ -155,7 +155,7 @@ function processUpdate($update) {
                 break;
                 
             case 'withdraw':
-                $min = 100;
+                $min = 500;
                 if ($users[$chat_id]['balance'] < $min) {
                     $msg = "🏧 Withdrawal\nMinimum: $min points\nYour balance: {$users[$chat_id]['balance']}\nNeed " . ($min - $users[$chat_id]['balance']) . " more points!";
                 } else {
@@ -166,7 +166,7 @@ function processUpdate($update) {
                 break;
                 
             case 'help':
-                $msg = "❓ Help\n💰 Earn: Get 10 points/min\n👥 Refer: 50 points/ref\n🏧 Withdraw: Min 100 points\nUse buttons below to navigate!";
+                $msg = "❓ Help\n💰 Earn: Get 10 points/min\n👥 Refer: 50 points/ref\n🏧 Withdraw: Min 500 points\nUse buttons below to navigate!";
                 break;
         }
         
